@@ -1,0 +1,55 @@
+{% load static %}
+{% load i18n %}
+
+<html style="height: auto; min-height: 100%;"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> {{meta_info.site_title}} </title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="shortcut icon" href="" type="image/x-icon">
+  <link rel="stylesheet" href="/static/library/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/library/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/library/dist/css/skins/_all-skins.css">
+  <link rel="stylesheet" href="/static/library/plugins/iCheck/all.css">
+  <link rel="stylesheet" href="/static/library/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/static/eics/css/main.css">
+  <script src="/static/library/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/static/library/bower_components/jquery-ui/jquery-ui.min.js"></script>
+</head>
+<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%;">
+<div class="wrapper" style="height: auto; min-height: 100%;">
+
+  <header class="main-header">
+      <div class="cu_navbar">
+          <span>{{ header_title }}</span>
+      </div>
+    </a>
+  </header>
+
+    {% csrf_token %}
+
+  <div class="content-wrapper" style="margin-left: 0 !important;">
+      {% block content %}
+
+      {% endblock %}
+  </div>
+
+
+    <div id="loading" style="position:absolute; z-index: 99999; display:None; left: 50%; top: 35%">
+        <img src="/static/library/img/loading.gif">
+    </div>
+    <div id="waiting" class=""></div>
+
+
+  <div class="control-sidebar-bg"></div>
+</div>
+
+
+<script src="/static/library/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/static/library/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/static/library/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="/static/library/dist/js/adminlte.min.js"></script>
+<script src="/static/library/plugins/iCheck/icheck.min.js"></script>
+<script src="/static/eics/js/main.js"></script>
+
+</body></html>

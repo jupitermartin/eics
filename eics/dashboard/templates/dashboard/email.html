@@ -1,0 +1,59 @@
+<html>
+{% load static %}
+{% load i18n %}
+    <head></head>
+    <body>
+        <div style="font-family: Helvetica, Arial, sans-serif, serif, EmojiFont; background-color: rgb(240, 240, 240);">
+        <table align="center" height="100%" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f0f0f0">
+        <tbody>
+        <tr>
+            <td>
+                <table width="50%" align="center" border="1" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td width="50%" align="center">Planned_Event_No</td>
+                            <td width="50%" align="center">{{ ticketid }}</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" align="center">Reason</td>
+                            <td width="50%" align="center">{{ reason }}</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" align="center">Start_Date</td>
+                            <td width="50%" align="center">{{ start_date }}</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" align="center">End_Date</td>
+                            <td width="50%" align="center">{{ end_date }}</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" align="center">Impact</td>
+                            <td width="50%" align="center">Yes</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" align="center">Duration</td>
+                            <td width="50%" align="center">{{ duration }} mins</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" align="center">Location</td>
+                            <td width="50%" align="center">{{ location }} {{ north }}, {{ west }}</td>
+                        </tr>
+                        <tr>
+                            <td width="50%" align="center">Splice number ID</td>
+                            <td width="50%" align="center">{{ splice_num }}</td>
+                        </tr>
+                        {% for item in circuits_list %}
+                            <tr>
+                                <td width="50%" align="center">Additional Info</td>
+                                <td width="50%" align="center">{{ item }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+    </body>
+</html>

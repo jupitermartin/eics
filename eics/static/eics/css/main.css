@@ -1,0 +1,47 @@
+.cu_navbar {
+    background-color: #53636d; width: 100%;height: 70px;text-align: center;
+    display: table;
+}
+
+.cu_navbar span {
+    color: white;
+    font-size: 25px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.cu_box {
+    border: 0;
+    border-radius: 15px;
+    box-shadow: none;
+    padding: 20px;
+}
+
+.chlabel {
+    float: none !important;
+    font-size: inherit !important
+}
+.cu_box label {
+    float: right;
+    font-size: 20px;
+}
+.cu_box input {
+    border: 1px solid #a4a7ab;
+}
+.cu_box textarea {
+    border: 1px solid #a4a7ab;
+}
+.cu_box select {
+    border: 1px solid #a4a7ab;
+}
+
+.menu_dv {
+    background-color: #CBCBCB;
+    font-size: 25px;
+    text-align: center;
+    border: solid 1px #b9b5b5;
+    text-align: center;
+    padding: 5px;
+}
+.menu_dv a{
+    color: #0a0a0a;
+}
