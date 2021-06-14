@@ -1,54 +1,110 @@
 <html>
 {% load static %}
 {% load i18n %}
-    <head></head>
+    <head>
+        <style>
+            .e_tb_01 span {
+                font-size: 18px;
+            }
+            .e_tb_02 {
+                border-color: black;border: 1px solid;
+                border-top-width: 0 !important;
+                border-right-width: 0 !important;
+            }
+            .e_tb_02 span {
+                background-color: #00ff00;
+            }
+            .e_tb_02 th {
+                padding-left: 5px;
+                padding-bottom: 5px;
+                padding-right: 5px;
+                border-color: black;border: 1px solid;
+                border-bottom-width: 0 !important;
+                border-left-width: 0 !important;
+            }
+            .e_tb_02 td{
+                border-color: black;border: 1px solid;
+                border-bottom-width: 0 !important;
+                border-left-width: 0 !important;
+            }
+            .e_tb_03 {
+                border-color: black;border: 1px solid;
+                border-top-width: 0 !important;
+                border-right-width: 0 !important;
+            }
+            .e_tb_03 span {
+                background-color: #00ff00;
+            }
+            .e_tb_03 td {
+                padding-left: 5px;
+                padding-bottom: 5px;
+                padding-right: 5px;
+                border-color: black;border: 1px solid;
+                border-bottom-width: 0 !important;
+                border-left-width: 0 !important;
+            }
+        </style>
+    </head>
     <body>
-        <div style="font-family: Helvetica, Arial, sans-serif, serif, EmojiFont; background-color: rgb(240, 240, 240);">
-        <table align="center" height="100%" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f0f0f0">
+        <div style="font-family: Helvetica, Arial, sans-serif, serif, EmojiFont;">
+
+        <table align="center" height="100%" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tbody>
         <tr>
             <td>
-                <table width="50%" align="center" border="1" cellspacing="0" cellpadding="0">
+                <table width="100%" align="left" border="0" cellspacing="0" cellpadding="0" class="e_tb_01" style="margin: 15px 0px">
+                    <tr><td> <span style="font-weight: bold;">Maintenance Details: </span> </td></tr>
+                </table>
+                <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 15px 0px;" class="e_tb_02">
+                    <thead>
+                        <tr>
+                            <th width="10%" align="center"><span>Planned_Event_No</span></th>
+                            <th width="10%" align="center"><span>Start_Date</span></th>
+                            <th width="10%" align="center"><span>Start_Time_UTC</span></th>
+                            <th width="10%" align="center"><span>End_Date</span></th>
+                            <th width="10%" align="center"><span>End_Time_UTC</span></th>
+                            <th width="10%" align="center"><span>Duration</span></th>
+                            <th width="10%" align="center"><span>Impact</span></th>
+                            <th width="10%" align="center"><span>Location</span></th>
+                            <th width="10%" align="center"><span>Reason</span></th>
+                            <th width="10%" align="center"><span>Splice number ID</span></th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr>
-                            <td width="50%" align="center">Planned_Event_No</td>
-                            <td width="50%" align="center">{{ ticketid }}</td>
+                            <td align="center">{{ ticketid }}</td>
+                            <td align="center">{{ start_date_o }}</td>
+                            <td align="center">{{ start_date_t }}</td>
+                            <td align="center">{{ end_date_o }}</td>
+                            <td align="center">{{ end_date_t }}</td>
+                            <td align="center">{{ duration }}</td>
+                            <td align="center">Yes</td>
+                            <td align="center">{{ location }} {{ north }}, {{ west }}</td>
+                            <td align="center">{{ reason }}</td>
+                            <td align="center">{{ splice_num }}</td>
                         </tr>
+                    </tbody>
+                </table>
+
+                <table width="30%" align="left" border="0" cellspacing="0" cellpadding="0" style="margin: 15px 0px;" class="e_tb_03">
+                    <tbody>
                         <tr>
-                            <td width="50%" align="center">Reason</td>
-                            <td width="50%" align="center">{{ reason }}</td>
-                        </tr>
-                        <tr>
-                            <td width="50%" align="center">Start_Date</td>
-                            <td width="50%" align="center">{{ start_date }}</td>
-                        </tr>
-                        <tr>
-                            <td width="50%" align="center">End_Date</td>
-                            <td width="50%" align="center">{{ end_date }}</td>
-                        </tr>
-                        <tr>
-                            <td width="50%" align="center">Impact</td>
-                            <td width="50%" align="center">Yes</td>
-                        </tr>
-                        <tr>
-                            <td width="50%" align="center">Duration</td>
-                            <td width="50%" align="center">{{ duration }} mins</td>
-                        </tr>
-                        <tr>
-                            <td width="50%" align="center">Location</td>
-                            <td width="50%" align="center">{{ location }} {{ north }}, {{ west }}</td>
-                        </tr>
-                        <tr>
-                            <td width="50%" align="center">Splice number ID</td>
-                            <td width="50%" align="center">{{ splice_num }}</td>
+                            <td align="center"><span>Fiber_Service_ID</span></td>
                         </tr>
                         {% for item in circuits_list %}
                             <tr>
-                                <td width="50%" align="center">Additional Info</td>
-                                <td width="50%" align="center">{{ item }}</td>
+                                <td align="center">{{ item }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
+                </table>
+
+                <table width="100%" align="left" border="0" cellspacing="0" cellpadding="0" class="e_tb_04" style="margin: 15px 0px">
+                    <tr style="padding: 15px 0px"><td> <span style="font-weight: bold">Point of Contact Info: </span> </td></tr>
+                    <tr style="padding: 15px 0px"><td> <span>Mary McCabe Step Telecoms +353 87 8075670 </span> <a href="">mary.mccabe@steptelecoms.ie</a></td></tr>
+                    <tr style="padding: 15px 0px"><td> <span>Chris Doherty Step Telecoms +353 85 1791584 </span><a href="">christopher.doherty@steptelecoms.ie</a></td></tr>
+                    <tr style="padding: 15px 0px"><td> <span style="font-weight: bold">Onsite Contact Info: </span> </td></tr>
+                    <tr style="padding: 15px 0px"><td> <span>Chris Doherty Step Telecoms +353 85 1791584 </span><a href="">christopher.doherty@steptelecoms.ie</a></td></tr>
                 </table>
             </td>
         </tr>

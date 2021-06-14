@@ -16,8 +16,11 @@ import logging
 from module import constant as mcs
 
 def get_all_splice_point_data(request):
-    data = list(SplicePointData.objects.all().values("section", "splice_pt", "step_chamber_id", "address", "north", "west"))
+    data = list(SplicePointData.objects.all().values("splice_pt", "step_chamber_id", "address", "north", "west"))
     return data
+
+def get_splice_point_byid(reuqest, id):
+    return SplicePointData.objects.get(pk=id)
 
 def get_all_main_tickets(request):
     data = list(MaintTickets.objects.all().values())
@@ -27,15 +30,23 @@ def get_all_splicetofibre(request):
     data = list(SpliceToFibre.objects.all().values())
     return data
 
+def get_all_ribbons(request):
+    data = list(Ribbon.objects.all().values())
+    return data
+
 def get_ticket_by_id(request, id):
     obj = MaintTickets.objects.get(pk=id)
+    return obj
+
+def get_ribbon_by_id(request, id):
+    obj = Ribbon.objects.get(pk=id)
     return obj
 
 def get_mail_account(request):
     if not mcs.EMAIL_DEBUG_MODE:
         mail_account = {}
         mail_account['email'] = "kirchenewilov@gmail.com"
-        mail_account["password"] = "xx"
+        mail_account["password"] = "kirchenewilov2407#"
         return mail_account
     else:
         mail_account = {}
@@ -43,7 +54,7 @@ def get_mail_account(request):
         mail_account["password"] = "xx"
         return mail_account
 
-def send_email_status_update(request, param):
+def send_email_status_update(request, param, orig_param):
     try:
         ics_flag = 0
         try:
@@ -97,6 +108,13 @@ def send_email_status_update(request, param):
             msg["Subject"] = 'Step Telecoms Ltd Scheduled Maintenance: Multiple Circuits Dublin Network STMT19081'
 
             param['circuits_list'] = json.loads(param['circuits'])
+
+            param['start_date_o'] = datetime.strptime(orig_param['start_date'], '%d/%m/%Y %H:%M').strftime('%d/%m/%Y')
+            param['start_date_t'] = datetime.strptime(orig_param['start_date'], '%d/%m/%Y %H:%M').strftime('%H:%M')
+            param['end_date_o'] = datetime.strptime(orig_param['end_date'], '%d/%m/%Y %H:%M').strftime('%d/%m/%Y')
+            param['end_date_t'] = datetime.strptime(orig_param['end_date'], '%d/%m/%Y %H:%M').strftime('%H:%M')
+            res = orig_param['duration'].split(':')
+            param['duration'] = res[0] + "Hrs " + res[1] + "Mins"
 
             html = render_email(param, "dashboard/email.html")
             part1 = MIMEText(html, 'html')

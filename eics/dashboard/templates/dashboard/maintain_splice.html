@@ -1,0 +1,115 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+
+    <section class="content">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-6 col-xl-offset-3 offset-xl-3">
+                <div class="box box-info cu_box" style="border-top: 3px solid;border-top-color: #00c0ef;">
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>Splice Points:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select id="splice_number" class="form-control" onchange="onchange_splice_number_maintain_sp()">
+                                        <option value="-1">Select splice number</option>
+                                        {% for item in splice_point_data %}
+                                            <option value="{{ item.splice_pt }}">{{ item.splice_pt }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="auto_loading_fields">
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>Step Chamber ID:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input id="" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>Address:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input id="" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>Co ords:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input id="" type="text" class="form-control">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input id="" type="text" class="form-control">
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-11">
+                                    <button onclick="onclick_edit_splice_point()" type="button" style="float: right" class="btn btn-primary">Edit Splice Point</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="box box-info cu_box" style="border-top: 3px solid;border-top-color: #00c0ef;">
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>Splice Point:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input id="n_sp_num" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>Step Chamber ID:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input id="n_chamber_id" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>Address:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input id="n_address" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label>Co ords:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input id="n_ns_ord" type="text" class="form-control">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input id="n_we_ord" type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-11">
+                                    <button onclick="onclick_create_splice_point()" type="button" style="float: right" class="btn btn-primary">Create Splice Point</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

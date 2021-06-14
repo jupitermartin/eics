@@ -32,8 +32,7 @@ class RibbonToFibre(models.Model):
 
 
 class SplicePointData(models.Model):
-    section = models.IntegerField(db_column='Section', blank=True, null=True)  # Field name made lowercase.
-    splice_pt = models.TextField(db_column='Splice Pt', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    splice_pt = models.CharField(db_column='Splice Pt', primary_key=True, max_length=25)
     step_chamber_id = models.TextField(db_column='Step Chamber ID', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     address = models.TextField(db_column='Address', blank=True, null=True)  # Field name made lowercase.
     north = models.TextField(blank=True, null=True)

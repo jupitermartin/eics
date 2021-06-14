@@ -16,5 +16,12 @@ urlpatterns = [
     path('create_reactive_maintenance', views.Create_reactive_maintenance.as_view(), name='create_reactive_maintenance'),
     path('update_reactive_maintenance', views.Update_reactive_maintenance.as_view(), name='update_reactive_maintenance'),
 
-    path('maintain_splice_circuit', views.Maintain_splice_circuit.as_view(), name='maintain_splice_circuit'),
+    path('maintain_splice', views.Maintain_splice.as_view(), name='maintain_splice'),
+    path('maintain_circuit', views.Maintain_circuit.as_view(), name='maintain_circuit'),
+
+    path('auto_load_sp', views.auto_load_sp, name='auto_load_sp'),
+    path('edit_splice_point', views.edit_splice_point, name='edit_splice_point'),
+    path('create_splice_point', views.create_splice_point, name='create_splice_point'),
+    path('create_circuit', views.create_circuit, name='create_circuit'),
+
 ]

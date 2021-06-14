@@ -300,6 +300,7 @@ function onclick_cr_submit() {
        }
     });
 }
+
 function onclick_ur_submit() {
     let to_addresses = $('#to_addresses').val();
     if (to_addresses === '') {
@@ -384,4 +385,109 @@ function onclick_ur_submit() {
             }
        }
     });
+}
+
+function onclick_edit_splice_point() {
+    let param = {};
+    param.splice_pt = $('#splice_number').val();
+    param.chamber_id = $('#chamber_id').val();
+    param.address = $('#address').val();
+    param.ns_ord = $('#ns_ord').val();
+    param.we_ord = $('#we_ord').val();
+    $.ajax({
+        type: 'POST',
+        url: '/edit_splice_point',
+        data: param,
+        success: function (res) {
+            if (res === 'success') {
+                alert('Success');
+                window.location.reload();
+            } else {
+                alert('Sorry, something went wrong.');return;
+            }
+        }
+    });
+}
+function onclick_create_splice_point() {
+    let param = {};
+    param.splice_pt = $('#n_sp_num').val();
+    param.chamber_id = $('#n_chamber_id').val();
+    param.address = $('#n_address').val();
+    param.ns_ord = $('#n_ns_ord').val();
+    param.we_ord = $('#n_we_ord').val();
+    $.ajax({
+        type: 'POST',
+        url: '/create_splice_point',
+        data: param,
+        success: function (res) {
+            if (res === 'success') {
+                alert('Success');
+                window.location.reload();
+            } else {
+                alert('Sorry, something went wrong.');return;
+            }
+        }
+    });
+}
+function onchange_splice_number_maintain_sp () {
+    let splice_num = $('#splice_number').val();
+    if (splice_num === '-1') {
+        return;
+    }
+    let param = {'splice_num': splice_num};
+    $('#auto_loading_fields').html('');
+    $('#auto_loading_fields').load('/auto_load_sp', param);
+}
+
+function onclick_ribbon() {
+    let ribbon_id = $('#ribbons').val();
+    if (ribbon_id === '-1') {
+        return;
+    }
+    for (var i=0;i < ribbons.length; i++) {
+        if (ribbons[i]['id'] === ribbon_id){
+            $('#fibrenolow').val(ribbons[i]['fibrenolow']);
+            $('#fibrenohigh').val(ribbons[i]['fibrenohigh']);
+        }
+    }
+}
+function onclick_create_circuit() {
+    let param = {};
+    param.circuit = $('#circuit').val();
+    param.ribbonid = $('#ribbons').val();
+    param.ribbon_fibrenolow = $('#fibrenolow').val();
+    param.ribbon_fibrenohigh = $('#fibrenohigh').val();
+    param.splice_num = $('#splice_number').val();
+    param.sp_a = $('#sp_a').is(':checked');
+    param.sp_b = $('#sp_b').is(':checked');
+    if (param.circuit === '') {
+        alert('Please input circuit');
+        return;
+    }
+    if (param.ribbonid === '-1') {
+        alert('Please select ribbon');
+        return;
+    }
+    if (param.splice_num === '-1') {
+        alert('Please select splice number');
+        return;
+    }
+    if (param.sp_a === false && param.sp_b === false) {
+        alert('Check at least one of ends');return;
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: '/create_circuit',
+        data: param,
+        success: function (res) {
+            if (res === 'success') {
+                alert('Success');
+                window.location.reload();
+            } else {
+                alert('Sorry, something went wrong.');return;
+            }
+        }
+    });
+
 }
