@@ -33,6 +33,13 @@ def get_all_splicetofibre(request):
 def get_all_ribbons(request):
     data = list(Ribbon.objects.all().values())
     return data
+def get_all_ribbontofibre(request):
+    data = list(RibbonToFibre.objects.all().values())
+    return data
+
+def get_ribbons_by_ids(request, ribbonids):
+    data = list(Ribbon.objects.filter(ribbonid__in=ribbonids))
+    return data
 
 def get_ticket_by_id(request, id):
     obj = MaintTickets.objects.get(pk=id)

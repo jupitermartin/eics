@@ -24,4 +24,9 @@ urlpatterns = [
     path('create_splice_point', views.create_splice_point, name='create_splice_point'),
     path('create_circuit', views.create_circuit, name='create_circuit'),
 
+    path('search_splice_database', views.search_splice_database.as_view(), name='search_splice_database'),
+    path('load_search_from_to_dc', views.load_search_from_to_dc, name='load_search_from_to_dc'),
+    path('load_sp_detail', views.load_sp_detail, name='load_sp_detail'),
+    path('load_cc_detail', views.load_cc_detail, name='load_cc_detail'),
+
 ]

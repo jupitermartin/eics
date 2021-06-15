@@ -491,3 +491,22 @@ function onclick_create_circuit() {
     });
 
 }
+
+function onclick_search() {
+    let param = {};
+    param.from_dc = $('#from_dc').val();
+    param.to_dc = $('#to_dc').val();
+    $('#sp_pt_div').load('/load_search_from_to_dc', param);
+}
+
+function onchange_splice_query() {
+    let param = {};
+    param.sp = $('#splice_point').val();
+    $('#sp_de_div').load('/load_sp_detail', param);
+}
+
+function onchange_circuit_query() {
+    let param = {};
+    param.circ = $('#circ').val();
+    $('#cc_de_div').load('/load_cc_detail', param);
+}

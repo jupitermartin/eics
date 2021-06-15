@@ -278,6 +278,51 @@ def auto_load_sp(request):
     res_ = {'res': res}
     return render(request, 'dashboard/auto_load_sp.html', res_)
 
+def load_search_from_to_dc(request):
+    param = request.POST
+    from_dc = param['from_dc']
+    to_dc = param['to_dc']
+    search_query = 'DF-' + from_dc + '-' + to_dc
+    res = mcm.get_all_splicetofibre(request)
+    splice_points = []
+    for item in res:
+        if search_query in item['fibre']:
+            splice = item['splice'][4:-2]
+            splice_points.append(splice)
+
+    splice_points = list(dict.fromkeys(splice_points))
+    res_ = {'res': splice_points}
+    return render(request, 'dashboard/sp_pt_div.html', res_)
+
+def load_sp_detail(request):
+    param = request.POST
+    sp = param['sp']
+    res = mcm.get_splice_point_byid(request, sp)
+    splice_to_fibre_data = mcm.get_all_splicetofibre(request)
+
+    DF_numbers = []
+    for item in splice_to_fibre_data:
+        if sp + ' ' in item['splice']:
+            DF_numbers.append(item['fibre'])
+
+    DF_numbers_ = list(dict.fromkeys(DF_numbers))
+
+    res_ = {'res': res, 'circuits': DF_numbers_}
+    return render(request, 'dashboard/sp_de_div.html', res_)
+
+def load_cc_detail(request):
+    param = request.POST
+    circ = param['circ']
+    res = mcm.get_all_ribbontofibre(request)
+    ribbon_ids = []
+    for item in res:
+        if circ == item['fibre']:
+            ribbon_ids.append(item['ribbonid_id'])
+    ribbon_ids = list(dict.fromkeys(ribbon_ids))
+    res = mcm.get_ribbons_by_ids(request, ribbon_ids)
+    res_ = {'res': res}
+    return render(request, 'dashboard/cic_de_div.html', res_)
+
 def edit_splice_point(request):
     try:
         param = request.POST
@@ -345,3 +390,11 @@ def create_circuit(request):
         return HttpResponse('success')
     except Exception as e:
         return HttpResponse('error')
+
+class search_splice_database(bsv.BaseView):
+    template_name = 'dashboard/search.html'
+
+    def get_context_data(self, **kwargs):
+        context = self.get_context()
+        context['header_title'] = 'Search Splice Database'
+        return context
